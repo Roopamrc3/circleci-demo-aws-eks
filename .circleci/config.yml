@@ -120,7 +120,7 @@ workflows:
           name: build-and-push-image
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
-          repo: circleci-demo-aws-eks
+          repo: eks_orb_demo_app
           dockerfile: ~/project/demo_app/Dockerfile
           path: ~/project/demo_app
           tag: ${CIRCLE_SHA1}
@@ -134,7 +134,7 @@ workflows:
       - deploy-application:
           cluster-name: monitoring-rapidinnovation-eks
           aws-region: $AWS_DEFAULT_REGION
-          docker-image-name: "${AWS_ECR_URL}/circleci-demo-aws-eks:${CIRCLE_SHA1}"
+          docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app:${CIRCLE_SHA1}"
           version-info: "${CIRCLE_SHA1}"
           requires:
             - aws-eks/create-cluster
